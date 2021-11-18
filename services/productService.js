@@ -6,7 +6,6 @@ class ProductService {
 
   async getAllProducts() {
     const data = await this.ProductModel.find({}).lean();
-    console.log(data);
     return data;
   }
 

@@ -6,11 +6,24 @@ const pageContent = document.getElementById("page-content");
 const buttonLogin = document.getElementById("button-login");
 const addProduct = document.getElementById("add-product");
 const categoryList = document.getElementById("categoryList");
+const categoryListProductEdit = document.getElementById(
+  "categoryList-edit-product"
+);
 const buttonLogout = document.getElementById("button-logout");
 const addProductForm = document.getElementById("add-product-form");
+const editproductForm = document.getElementById("edit-product-form");
 const toggleFormAddProduct = document.getElementById("toggle-form-add-product");
 const REGEX_FLOAT_NUMBERS = /^[+-]?\d+(\.\d+)?$/;
 let isFormProductOpen = false;
+
+// campos del modal editar
+const titleModal = document.getElementById("name-edit-product");
+const priceModal = document.getElementById("price-edit-product");
+const imageModal = document.getElementById("image-edit-product");
+const categoryModal = document.getElementById("categoryList-edit-product");
+const imageEditProductPreview = document.getElementById(
+  "image-edit-product-preview"
+);
 
 const CATEGORY_LIST = [
   "Todos",
@@ -20,7 +33,6 @@ const CATEGORY_LIST = [
   "Cigarros",
   "Otros",
 ];
-
 let total = 0;
 let totalFixed = 0;
 
@@ -29,7 +41,7 @@ function imageToBase64(imageFile) {
     const fr = new FileReader();
     fr.onload = () => resolve(fr.result);
     fr.onerror = (err) => reject(err);
-    fr.readAsDataURL(imageFile);
+    imageFile && fr.readAsDataURL(imageFile);
   });
 }
 
@@ -88,17 +100,45 @@ async function deleteProductHanlder(e) {
 
 async function editProductHandler(e) {
   const productId = e.target.getAttribute("data-productid");
+  const productContainer = document.getElementById(productId);
+  const productIdInput = document.getElementById("productid");
+  const title = productContainer.querySelector("h3").innerHTML;
+  const price = productContainer.querySelector("h1").innerHTML;
+  const img = productContainer.querySelector("img").src;
+  const category =
+    productContainer.querySelector(".product-category").innerHTML;
 
-  // const product = await axios.get(`/api/product/${productId}`);
-  // const { name, image, price, category } = product.data;
-  // const form = document.getElementById("form-edit-product");
-  // form.name.value = name;
-  // form.price.value = price;
-  // form.category.value = category;
-  // form.image.value = image;
-  // form.productId.value = productId;
-  // form.action = `/api/product/${productId}`;
-  // form.submit();
+  titleModal.value = title;
+  priceModal.value = parseFloat(price.replace("$", ""));
+  imageEditProductPreview.src = img;
+  categoryModal.value = category;
+  productIdInput.value = productId;
+}
+
+async function editProductOnSubmit(e) {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const productId = e.target.productid.value;
+  data.append("image", imageEditProductPreview.src);
+  try {
+    const product = await axios.put(`/api/product/${productId}`, data);
+    alert("El producto fue editado");
+    window.location.href = "index.html";
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data?.error) {
+        alert(error.response.data.data);
+      }
+    } else {
+      alert("Error desconocido, intente más tarde");
+    }
+  }
+}
+
+async function changeImageModal(e) {
+  const imageFile = e.target.files[0];
+  const base64 = await imageToBase64(imageFile);
+  imageEditProductPreview.src = base64;
 }
 
 function onChangeCategory(category, productsList) {
@@ -123,7 +163,7 @@ function displayproducts(productlist) {
   let productsHTML = ``;
 
   productlist.forEach((element) => {
-    const { name, image, price, _id } = element;
+    const { name, image, price, _id, category } = element;
     const buttons = getToken()
       ? `<a href="#open-modal" style="display:block; width:100%; text-decoration: none;">
             <button 
@@ -142,6 +182,7 @@ function displayproducts(productlist) {
     productsHTML += `<div class="product-container" id="${_id}">
     
 			<h3>${name}</h3>
+      <p class="product-category">${category ? category : "Sin categoría"}</p>
 			<img src="${image}" />
 			<h1>$${price}</h1>
       <div class="buttons">
@@ -164,6 +205,7 @@ function displayproducts(productlist) {
   if (getToken()) {
     deleteProductOnclick();
     editProductOnlick();
+    editproductForm.addEventListener("submit", editProductOnSubmit);
   }
 }
 
@@ -214,6 +256,7 @@ window.onload = async () => {
     buttonLogout.addEventListener("click", logout);
     addProductForm.addEventListener("submit", addProductHandler);
     addCategories(categoryList);
+    addCategories(categoryListProductEdit);
   } else {
     addProduct.remove();
     buttonLogout.remove();
@@ -232,9 +275,11 @@ window.onload = async () => {
     onChangeCategory(e.target.value, productlist);
   });
 
-  toggleFormAddProduct.addEventListener("click", toggleFormAddProductHandler);
   if (getToken()) {
     deleteProductOnclick();
     editProductOnlick();
+    imageModal.addEventListener("change", changeImageModal);
+    toggleFormAddProduct.addEventListener("click", toggleFormAddProductHandler);
+    editproductForm.addEventListener("submit", editProductOnSubmit);
   }
 };

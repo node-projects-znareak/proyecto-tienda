@@ -94,26 +94,45 @@
           Rellene los nuevos datos para editar el producto
         </div>
         <form id="edit-product-form">
+          <input type="hidden" name="productid" id="productid" value="" />
           <div class="form-group">
-            <label for="name">Nombre del producto</label>
-            <input type="text" id="name" name="name" min="6" required />
+            <label for="name-edit-product">Nombre del producto</label>
+            <input
+              type="text"
+              id="name-edit-product"
+              name="name"
+              min="6"
+              required
+            />
           </div>
 
           <div class="form-group">
-            <label for="price">Precio del producto</label>
-            <input type="text" id="price" name="price" required />
+            <label for="price-edit-product">Precio del producto</label>
+            <input type="text" id="price-edit-product" name="price" required />
           </div>
 
           <div class="form-group">
-            <label for="categoryList">Categoría</label>
-            <select id="categoryList" name="category" required></select>
+            <label for="categoryList-edit-product">Categoría</label>
+            <select
+              id="categoryList-edit-product"
+              name="category"
+              required
+            ></select>
           </div>
 
           <div class="form-group">
-            <label for="image">Imágen del producto</label>
-            <input type="file" id="image" name="image" />
+            <label for="image-edit-product">Imágen del producto</label>
+            <input type="file" id="image-edit-product" name="image" />
           </div>
+
+          <img
+            src=""
+            alt="Previsualizacion del producto"
+            title="Previsualizacion del producto"
+            id="image-edit-product-preview"
+          />
           <button
+            type="submit"
             class="button"
             id="edit-product"
             style="display: block; width: 100%; margin-top: 0.5rem"
@@ -178,6 +197,7 @@
 
     <script src="./helpers/axios.min.js"></script>
     <script src="./helpers/token.js"></script>
+    <script src="./helpers/interceptors.js"></script>
     <script src="scripts.js"></script>
   </body>
 </html>
