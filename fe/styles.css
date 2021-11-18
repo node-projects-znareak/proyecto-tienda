@@ -520,13 +520,17 @@ body {
   justify-content: space-around;
 }
 
-.button-add,.button-delete {
+.button-add,
+.button-delete,
+.button-edit {
   transition-duration: 0.4s;
   background-color: white;
   color: black;
   border: 2px solid #66cc00;
   font-size: 13px;
   margin-bottom: 5px;
+  display: block;
+  width: 100%;
 }
 
 .button-delete {
@@ -535,7 +539,7 @@ body {
   border-color: transparent;
 }
 
-button.button-delete:hover{
+button.button-delete:hover {
   background-color: rgba(248, 46, 46, 0.788);
 }
 
@@ -561,7 +565,8 @@ button {
   padding: 6px 15px;
 }
 
-.button-add:hover {
+.button-add:hover,
+.button-edit:hover {
   background-color: #4caf50; /* Green */
   color: white;
 }

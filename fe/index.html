@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+    <link rel="stylesheet" type="text/css" href="modal.css" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="stylesheet" type="text/css" href="loader.css" />
     <link
@@ -84,6 +84,44 @@
         </div>
         <button class="button" id="add-product">Agregar</button>
       </form>
+    </div>
+
+    <div id="open-modal" class="modal-window">
+      <div>
+        <a href="#" title="Close" class="modal-close">Cerrar</a>
+        <h1>Editar producto</h1>
+        <div style="margin-bottom: 1rem">
+          Rellene los nuevos datos para editar el producto
+        </div>
+        <form id="edit-product-form">
+          <div class="form-group">
+            <label for="name">Nombre del producto</label>
+            <input type="text" id="name" name="name" min="6" required />
+          </div>
+
+          <div class="form-group">
+            <label for="price">Precio del producto</label>
+            <input type="text" id="price" name="price" required />
+          </div>
+
+          <div class="form-group">
+            <label for="categoryList">Categoría</label>
+            <select id="categoryList" name="category" required></select>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Imágen del producto</label>
+            <input type="file" id="image" name="image" />
+          </div>
+          <button
+            class="button"
+            id="edit-product"
+            style="display: block; width: 100%; margin-top: 0.5rem"
+          >
+            Editar
+          </button>
+        </form>
+      </div>
     </div>
 
     <div id="page-content" class="page-content is-loading">

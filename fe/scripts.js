@@ -55,6 +55,13 @@ function addPriceOnclick() {
   });
 }
 
+function editProductOnlick() {
+  const buttons = document.querySelectorAll(".button-edit");
+  buttons.forEach((button) => {
+    button.onclick = editProductHandler;
+  });
+}
+
 function deleteProductOnclick() {
   const buttons = document.querySelectorAll(".button-delete");
   buttons.forEach((button) => {
@@ -77,6 +84,21 @@ async function deleteProductHanlder(e) {
       alert("Error desconocido, intente más tarde");
     }
   }
+}
+
+async function editProductHandler(e) {
+  const productId = e.target.getAttribute("data-productid");
+
+  // const product = await axios.get(`/api/product/${productId}`);
+  // const { name, image, price, category } = product.data;
+  // const form = document.getElementById("form-edit-product");
+  // form.name.value = name;
+  // form.price.value = price;
+  // form.category.value = category;
+  // form.image.value = image;
+  // form.productId.value = productId;
+  // form.action = `/api/product/${productId}`;
+  // form.submit();
 }
 
 function onChangeCategory(category, productsList) {
@@ -103,11 +125,13 @@ function displayproducts(productlist) {
   productlist.forEach((element) => {
     const { name, image, price, _id } = element;
     const buttons = getToken()
-      ? `<button 
-            class="button-add" 
-            data-productid="${_id}">
-            Editar producto
-         </button>
+      ? `<a href="#open-modal" style="display:block; width:100%; text-decoration: none;">
+            <button 
+              class="button-edit" 
+              data-productid="${_id}">
+              Editar producto
+            </button>
+          </a>
 
           <button 
               class="button-delete" 
@@ -115,7 +139,7 @@ function displayproducts(productlist) {
               Eliminar producto
           </button>`
       : "";
-    productsHTML += `<div class="product-container">
+    productsHTML += `<div class="product-container" id="${_id}">
     
 			<h3>${name}</h3>
 			<img src="${image}" />
@@ -139,6 +163,7 @@ function displayproducts(productlist) {
   addPriceOnclick();
   if (getToken()) {
     deleteProductOnclick();
+    editProductOnlick();
   }
 }
 
@@ -210,5 +235,6 @@ window.onload = async () => {
   toggleFormAddProduct.addEventListener("click", toggleFormAddProductHandler);
   if (getToken()) {
     deleteProductOnclick();
+    editProductOnlick();
   }
 };
