@@ -84,7 +84,7 @@ function deleteProductOnclick() {
 async function deleteProductHanlder(e) {
   const productId = e.target.getAttribute("data-productid");
   try {
-    const res = await axios.delete(`/api/product/${productId}`);
+    const res = await axios.delete(`${API_URL}/product/${productId}`);
     alert("El producto fue eliminado");
     window.location.reload();
   } catch (error) {
@@ -121,7 +121,7 @@ async function editProductOnSubmit(e) {
   const productId = e.target.productid.value;
   data.append("image", imageEditProductPreview.src);
   try {
-    const product = await axios.put(`/api/product/${productId}`, data);
+    const product = await axios.put(`${API_URL}/product/${productId}`, data);
     alert("El producto fue editado");
     window.location.href = "index.html";
   } catch (error) {
@@ -223,7 +223,7 @@ async function addProductHandler(e) {
   formData.append("image", imageBase64);
 
   try {
-    const res = await axios.post("/api/product/", formData);
+    const res = await axios.post(`${API_URL}/product/`, formData);
     alert("El producto fue agregado");
     window.location.reload();
   } catch (error) {
@@ -263,7 +263,7 @@ window.onload = async () => {
     addProductForm.remove();
     toggleFormAddProduct.remove();
   }
-  const res = await axios.get("/api/product");
+  const res = await axios.get(`${API_URL}/product`);
   const productlist = res?.data?.data || [];
   loader.remove();
   pageContent.classList.remove("is-loading");

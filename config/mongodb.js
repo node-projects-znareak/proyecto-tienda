@@ -8,6 +8,6 @@ const OPTIONS = {
 
 module.exports = {
   MongoClient,
-  MONGODB_URL: MONGO_DB.URL + MONGO_DB.DB,
+  MONGODB_URL: MONGO_DB.URL + `${MONGO_DB.DB}?retryWrites=true&w=majority`,
   OPTIONS,
 };

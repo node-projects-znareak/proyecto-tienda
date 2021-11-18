@@ -15,15 +15,11 @@ app.use(
   cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     credentials: true,
-    // origin(origin, cb) {
-    //   console.log(origin)
-    //   if (SERVER.API.ALLOWED_DOMAINS.includes(origin)) {
-    //     return cb(null, true);
-    //   }
-    //   cb(new Error("Su cliente no puede realizar peticiones al servidor"));
-    // },
+    origin: "*",
   })
 );
+app.options("*", cors());
+
 app.use(morgan("dev"));
 app.use(express.static("./uploads"));
 app.use(express.json());
@@ -32,5 +28,5 @@ app.use(fileUpload());
 app.use(helmet());
 app.use(hpp());
 app.use(rateLimit(SERVER.API.RATE_LIMITS));
-app.use("/", express.static(__dirname + '/fe'));
+app.use("/", express.static(__dirname + "/fe"));
 startServer(app, routers);
