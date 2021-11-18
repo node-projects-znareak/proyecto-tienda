@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Iniciar Sesión | Administrador</title>
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="form">
+        <form class="register-form f-hidden" id="register-form">
+          <h2>Registro de administrador</h2>
+          <input
+            type="text"
+            placeholder="name"
+            name="name"
+            min="4"
+            max="100"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            min="4"
+            max="100"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            name="password"
+            min="6"
+            max="100"
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
+            name="passwordConfirm"
+            min="6"
+            max="100"
+            required
+          />
+          <button>Registrarse</button>
+          <p class="message">
+            Estás registrado? <a href="#" id="registered">Ingresa aquí</a>
+          </p>
+        </form>
+
+        <form class="login-form" id="login-form">
+          <h2>Login de administrador</h2>
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            min="4"
+            max="100"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            name="password"
+            min="6"
+            max="100"
+            required
+          />
+          <button type="submit">Aceptar</button>
+          <p class="message">
+            No registrado? <a href="#" id="no-register">Crea tu cuenta</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="../helpers/axios.min.js"></script>
+    <script src="../helpers/token.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
