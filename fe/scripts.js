@@ -137,6 +137,9 @@ function displayproducts(productlist) {
   }
   pageContent.innerHTML = productsHTML;
   addPriceOnclick();
+  if (getToken()) {
+    deleteProductOnclick();
+  }
 }
 
 async function addProductHandler(e) {
