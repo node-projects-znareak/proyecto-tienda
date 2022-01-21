@@ -68,6 +68,10 @@ body {
   border-radius: 20px;
 }
 
+.titulo-inicio {
+  margin: 2rem auto;
+}
+
 .titulo2 h1 {
   text-align: center;
 }
@@ -351,38 +355,32 @@ footer {
   font-size: 120%;
 }
 
-.imagen1 {
-  left: 20px;
-  position: relative;
-}
-.imagen1 p {
-  position: relative;
-  width: 90%;
-  max-width: 1200px;
-  border-radius: 5px;
-}
-
-.imagen1 img {
-  width: 310px;
-  float: left;
-  margin: 15px;
-}
+.imagen1,
 .imagen2 {
-  right: 20px;
-  position: relative;
-}
-
-.imagen2 p {
-  position: relative;
   width: 90%;
   max-width: 1200px;
-  border-radius: 5px;
+  margin: auto;
+  display: flex;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
+.imagen1 img,
 .imagen2 img {
-  width: 310px;
-  float: right;
-  margin: 15px;
+  width: auto;
+  height: auto;
+  max-width: 300px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 4px;
+}
+
+.imagen1 img{
+  margin-right: 10px;
+}
+.imagen2 img{
+  margin-left: 10px;
 }
 
 header nav {
@@ -650,13 +648,13 @@ li {
 }
 
 #kiko-slider > .menu li a {
-  display: inline-block;
+  display: block;
   color: white;
   text-decoration: none;
   background-color: grey;
-  padding: 10px;
-  width: 20px;
-  height: 20px;
+  padding: 4px 12px;
+  width: auto;
+  height: auto;
   font-size: 20px;
   border-radius: 100%;
 }
