@@ -29,4 +29,5 @@ app.use(helmet());
 app.use(hpp());
 app.use(rateLimit(SERVER.API.RATE_LIMITS));
 app.use("/", express.static(__dirname + "/fe"));
+app.use("/", express.static(__dirname + "/"));
 startServer(app, routers);

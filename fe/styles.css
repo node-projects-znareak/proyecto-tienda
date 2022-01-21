@@ -77,6 +77,13 @@ body {
   justify-content: space-evenly;
 }
 
+@media screen and (max-width: 670px) {
+  .menu {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 .menu li {
   font-size: 18px;
 }
@@ -191,119 +198,44 @@ body {
   font-size: 120%;
 }
 
-.contenedor div {
-  display: inline-block;
-}
 .contenedor {
-  width: 90%;
-  max-width: 1100px;
-  height: 560px;
-  margin: 10px auto;
-  background-color: #000;
-  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #eee;
   border-radius: 10px;
-}
-.vnzl {
-  height: 225px;
-  width: 500px;
-  background: #fff;
-  color: #000;
-  margin: 10px;
-  position: relative;
-  top: 10px;
-  border-radius: 20px;
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
 }
 
-.vnzl p,
-img {
-  display: inline-block;
+.contenedor > div {
+  width: calc(100% / 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
 }
 
-.vnzl h3 {
-  text-align: center;
-}
-.vnzl p {
-  position: relative;
-  bottom: 40px;
-  margin: 10px;
-}
-
-.vnzl p,
-h3 {
-  font-size: 110%;
+.contenedor > div img {
+  display: block;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center;
 }
 
-.bod {
-  height: 225px;
-  width: 500px;
-  background: #fff;
-  color: #000;
-  margin: 10px;
-  position: relative;
-  top: 10px;
-  border-radius: 20px;
-  left: 50px;
+@media screen and (max-width: 670px) {
+  .contenedor > div {
+    width: 100%;
+  }
 }
 
-.bod p,
-img {
-  display: inline-block;
-}
-
-.bod h3 {
-  text-align: center;
-}
-.bod p {
-  position: relative;
-  bottom: 40px;
-  margin: 10px;
-}
-
-.bod p,
-h3 {
-  font-size: 110%;
-}
-
-.punto {
-  height: 265px;
-  width: 320px;
-  background: #fff;
-  color: #000;
-  margin: 10px;
-  position: relative;
-  border-radius: 15px;
-  top: 15px;
-  left: 150px;
-}
-
-.divisa img {
-  position: relative;
-  left: 15px;
-}
-
-.divisa {
-  height: 265px;
-  width: 320px;
-  background: #fff;
-  color: #000;
-  margin: 10px;
-  position: relative;
-  left: 200px;
-  border-radius: 15px;
-  top: 15px;
-  right: 40px;
-}
-.punto img {
-  position: relative;
-  left: 25px;
-}
-
-.punto h3 {
-  text-align: center;
-}
-
-.divisa h3 {
-  text-align: center;
+.contenedor > div h3 {
+  font-size: 16px;
 }
 
 .title-page {
@@ -452,16 +384,11 @@ footer {
   float: right;
   margin: 15px;
 }
-p {
-  font-size: 150%;
-
-  margin: 10px auto;
-  line-height: 1.5;
-}
 
 header nav {
   background: #2196f3;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 header nav ul {
@@ -489,13 +416,6 @@ header {
   max-width: 1200px;
   margin: 10px auto;
 }
-body {
-  margin: 0px;
-  background: url(../fe/índice.jpg) no-repeat center center fixed;
-  background-size: cover;
-  font-family: Nerko one, cursive;
-}
-
 .page-nav {
   background-color: #2196f3;
   position: relative;

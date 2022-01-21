@@ -11,8 +11,9 @@ axios.interceptors.response.use(
   },
   function (error) {
     if (401 === error.response.status) {
+      removeToken();
       alert("Tu sesión caducó o no estás logeado.");
-      window.location.href = "/login.html";
+      window.location.href = "/login";
     }
   }
 );

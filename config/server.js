@@ -1,4 +1,3 @@
-
 const { SERVER } = require("./variables");
 const wrapServerErrors = require("../middlewares/errorsHandling");
 const { message } = require("../helpers/utils");

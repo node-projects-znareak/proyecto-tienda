@@ -85,15 +85,15 @@ async function deleteProductHanlder(e) {
   const productId = e.target.getAttribute("data-productid");
   try {
     const res = await axios.delete(`${API_URL}/product/${productId}`);
-    alert("El producto fue eliminado");
-    window.location.reload();
+    if (res.data?.ok) {
+      alert("El producto fue eliminado");
+      window.location.href="index.html";
+    }
   } catch (error) {
     if (error.response) {
       if (error.response.data?.error) {
         alert(error.response.data.data);
       }
-    } else {
-      alert("Error desconocido, intente más tarde");
     }
   }
 }
@@ -121,16 +121,16 @@ async function editProductOnSubmit(e) {
   const productId = e.target.productid.value;
   data.append("image", imageEditProductPreview.src);
   try {
-    const product = await axios.put(`${API_URL}/product/${productId}`, data);
-    alert("El producto fue editado");
-    window.location.href = "index.html";
+    const res = await axios.put(`${API_URL}/product/${productId}`, data);
+    if (res.data?.ok) {
+      alert("El producto fue editado");
+      window.location.href="index.html";
+    }
   } catch (error) {
     if (error.response) {
       if (error.response.data?.error) {
         alert(error.response.data.data);
       }
-    } else {
-      alert("Error desconocido, intente más tarde");
     }
   }
 }
@@ -224,15 +224,15 @@ async function addProductHandler(e) {
 
   try {
     const res = await axios.post(`${API_URL}/product/`, formData);
-    alert("El producto fue agregado");
-    window.location.reload();
+    if (res.data?.ok) {
+      alert("El producto fue agregado");
+      window.location.href="index.html";
+    }
   } catch (error) {
     if (error.response) {
       if (error.response.data?.error) {
         alert(error.response.data.data);
       }
-    } else {
-      alert("Error desconocido, intente más tarde");
     }
   }
 }
@@ -247,7 +247,7 @@ function toggleFormAddProductHandler() {
 
 function logout() {
   removeToken();
-  window.location.reload();
+  window.location.href="index.html";
 }
 
 window.onload = async () => {
